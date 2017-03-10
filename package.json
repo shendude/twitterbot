@@ -1,0 +1,22 @@
+{
+  "name": "twitterbot",
+  "version": "1.0.0",
+  "description": "a revision of yamb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shendude/twitterbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shendude/twitterbot/issues"
+  },
+  "homepage": "https://github.com/shendude/twitterbot#readme",
+  "dependencies": {
+    "webpack": "^2.2.1"
+  }
+}
