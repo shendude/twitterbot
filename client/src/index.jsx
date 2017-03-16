@@ -1,6 +1,6 @@
 class App extends React.Component {
   render() {
-    return (<div>Hello World</div>);
+    return (<div>hello world</div>);
   }
 };
 
