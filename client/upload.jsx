@@ -1,5 +1,6 @@
 import React from "react";
 import Dropzone from "react-dropzone";
+import {myFilter, parseCards, parseBlob, parseLines} from "parser";
 
 class Upload extends React.Component {
   constructor(props) {
@@ -9,10 +10,10 @@ class Upload extends React.Component {
   onDrop(file) {
     const reader = new FileReader();
     reader.onload = () => {
-      console.log(reader.result);
+      const sent = parseBlob(reader.result, myFilter);
+      const markov = parseLines(sent);
     }
     reader.readAsText(file[0]);
-    console.log('file recieved', file[0]);
   }
   
   render() {

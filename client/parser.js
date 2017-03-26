@@ -7,11 +7,9 @@ var myFilter = function(string) {
 
 
 //markov chain text parser/generator. creates a probability graph as javascript object
-var freqs = {};
-var totals = {};
-var myCards = {};
 
-var parseCards = function() {
+//turns array of cards into sentence finishers
+var parseCards = function(cards) {
   var result = {};
   var first = ''
   for (var card of cards) {
@@ -22,12 +20,14 @@ var parseCards = function() {
     }
     result[arr[0]].push(arr);
   }
-  myCards = result;
+  return result
 }
 
 
 //turns blob of text into into array of sentences
-var parseBlob = function(string) {
+//filters out name prefixes
+//joins trailing sentences (sentences that span 2 lines)
+var parseBlob = function(string, filter) {
   var rows = string.split(/\r?\n/g);
   var sentences = [];
   var trailing = '';
@@ -43,7 +43,7 @@ var parseBlob = function(string) {
   };
   for (var line of rows) {
     line = line.split('"').join('');
-    if (myFilter(line)) {
+    if (filter(line)) {
       var temp = line.slice(5).split(/(?!Dr|Mr|Mrs|Miss|Master)\. /);
       for (var i = 0; i < temp.length; i++) {
         if (i < temp.length - 1) {
@@ -61,10 +61,13 @@ var parseBlob = function(string) {
   return sentences;
 }
 
-//parses an array of sentences to an object
-//then to an mongodb-compatable array
+//parses an array of sentences to an marjov object
+//freqs represents count of any 3 word combo
+//totals represents count of parent 2 word combo prefixes
 var parseLines = function(lines) {
-  var words = [];
+  let words = [];
+  let freqs = {};
+  let totals = {};
   //obj representation of markov graph
   var increment = function(a, b, c) {
     if (!totals[a + b]) {totals[a + b] = 0}
@@ -84,7 +87,7 @@ var parseLines = function(lines) {
       }
     }
   }
-  parseCards();
+  return {freqs: freqs, totals: totals};
 }
 
 export {myFilter, parseCards, parseBlob, parseLines};
