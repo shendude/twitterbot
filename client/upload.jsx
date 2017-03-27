@@ -1,6 +1,6 @@
 import React from "react";
 import Dropzone from "react-dropzone";
-import {myFilter, parseCards, parseBlob, parseLines} from "parser";
+import {myFilter, parseCards, parseBlob, parseLines} from "./parser.js";
 
 class Upload extends React.Component {
   constructor(props) {
