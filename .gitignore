@@ -2,5 +2,5 @@
 /sherlock.txt
 /shakespeare.json
 /short.txt
-/client/bundle.js
+/public/bundle.js
 **/.DS_Store
