@@ -5,11 +5,23 @@ import Json from "./json.jsx";
 import Upload from "./upload.jsx";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: false
+    };
+    this.onUpdate.bind(this);
+  }
+  
+  onUpdate(data) {
+    this.setState({data: data});
+  }
+  
   render() {
     return (
       <div>
-        <Json/>
-        <Upload/>
+        <Json data={this.state.data}/>
+        <Upload update={this.onUpdate}/>
       </div>
     );
   }

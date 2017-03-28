@@ -1,24 +1,5 @@
-
-//markov bot generator
-var generate = function(n){
-  //get first word
-  var sent = startSentence();
-  for (var i = 1; i <= n; i++) {
-    sent = addWord(sent);
-    if (sent === null) {
-      sent = startSentence();
-      i = 1;
-    }
-  }
-  sent = finishSentence(sent);
-  if (sent === null) {
-    return generate(n);
-  } else {
-    return sent;
-  }
-};
-
-var startSentence = function() {
+//starts sentence with random sentence starter
+var startSentence = function(freqs) {
   var sentence = ['_null'];
   var keys = Object.keys(freqs._null);
   var first ='..';
@@ -31,7 +12,7 @@ var startSentence = function() {
 }
 
 //given a sentence, add another word
-var addWord = function(arr) {
+var addWord = function(arr, totals, freqs) {
   var a = arr.slice(-2, -1);
   var b = arr.slice(-1);
   if (!freqs[a][b]) {
@@ -58,7 +39,7 @@ var addWord = function(arr) {
 };
 
 //given a sentence, tries to finish it
-var finishSentence = function(sentence) {
+var finishSentence = function(sentence, totals, freqs, myCards) {
   if (sentence === null) {
     return null;
   }
@@ -66,8 +47,27 @@ var finishSentence = function(sentence) {
   if (endings) {
     return sentence.slice(0, -1).concat(endings[endings.length * Math.random() << 0]);
   } else {
-    sentence = addWord(sentence);
-    return finishSentence(sentence);
+    sentence = addWord(sentence, totals, freqs);
+    return finishSentence(sentence, totals, freqs, myCards);
+  }
+};
+
+//markov bot generator, generates sentences of n base words long 
+var generate = function(n, totals, freqs, myCards){
+  //get first word
+  var sent = startSentence(freqs);
+  for (var i = 1; i <= n; i++) {
+    sent = addWord(sent, totals, freqs);
+    if (sent === null) {
+      sent = startSentence(freqs);
+      i = 1;
+    }
+  }
+  sent = finishSentence(sent, totals, freqs, myCards);
+  if (sent === null) {
+    return generate(n, totals, freqs, myCards);
+  } else {
+    return sent;
   }
 };
 
