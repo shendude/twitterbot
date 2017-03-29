@@ -70,20 +70,29 @@ var parseLines = function(lines) {
   let totals = {};
   //obj representation of markov graph
   var increment = function(a, b, c) {
-    if (!totals[a + b]) {totals[a + b] = 0}
+    if (!totals[a + b]) {totals[a + b] = 0};
     if (!freqs[a]) {freqs[a] = {}};
     if (!freqs[a][b]) {freqs[a][b] = {}};
-    if (!freqs[a][b][c]) {freqs[a][b][c] = 0}
+    if (!freqs[a][b][c]) {freqs[a][b][c] = 0};
     totals[a+b]++;
     freqs[a][b][c]++;
   }
   for (var sentence of lines) {
-    words = sentence.split(' ');
+    words = sentence.split(/\s+/);
+    while (words[0] === "") {
+      words = words.slice(1);
+    }
     for (var i = 0; i < words.length - 1; i++) {
       if (i === 0) {
         increment('_null', words[i], words[i+1]);
       } else {
-        increment(words[i-1], words[i], words[i+1]);
+        try {
+          increment(words[i-1], words[i], words[i+1]);
+        } catch (e) {
+          console.log(e);
+          console.log(words[i-1], words[i], words[i+1]);
+          console.log(freqs[words[i-1]]);
+        }
       }
     }
   }

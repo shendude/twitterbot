@@ -18,6 +18,11 @@ class Json extends React.Component {
   componentWillReceiveProps(newProps) {
     this.freqs = newProps.data.freqs;
     this.totals = newProps.data.totals;
+    try {
+      console.log(generate(10, this.totals, this.freqs, this.cards));
+    } catch (e) {
+      console.log(e);
+    }
   }
   render() {
     this.readCards();

@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       data: false
     };
-    this.onUpdate.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
   }
   
   onUpdate(data) {
@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <Json data={this.state.data}/>
-        <Upload update={this.onUpdate}/>
+        <Upload onUpdate={this.onUpdate}/>
       </div>
     );
   }
