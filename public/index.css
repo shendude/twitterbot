@@ -14,7 +14,7 @@
   top: 50%;
   margin-top: -18px;
   left: 50%;
-  margin-left: -86px;
+  margin-left: -95px;
 }
 
 #results {
@@ -22,19 +22,19 @@
 }
 
 #sentence {
-  font-family: 'Nothing You Could Do', cursive;
+  font-family: 'Coming Soon', cursive;
   font-size: 48px;
   text-shadow: 4px 4px 4px #aaa;
 }
 
 html {
   background: linear-gradient(to bottom right, #00aced, #c0deed);
+  font-family: 'Helvetica', sans-serif;
 }
 
 button {
   margin: 0 10px 0 0;
   padding: 15px 45px;
-  font-family: 'Helvetica', sans-serif;
   font-size: 48px;
   line-height: 1.8;
   appearance: none;
