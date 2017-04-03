@@ -7,6 +7,8 @@ class Json extends React.Component {
     this.cards = {};
     this.freqs = {};
     this.totals = {};
+    this.state = {sent: "", loaded: false};
+    this.generateSentence = this.generateSentence.bind(this);
   }
   readCards() {
     fetch("mycards.json")
@@ -18,15 +20,30 @@ class Json extends React.Component {
   componentWillReceiveProps(newProps) {
     this.freqs = newProps.data.freqs;
     this.totals = newProps.data.totals;
+    this.setState({loaded: true});
+    this.generateSentence();
+  }
+  generateSentence() {
     try {
-      console.log(generate(10, this.totals, this.freqs, this.cards));
+      let sent = generate(10, this.totals, this.freqs, this.cards);
+      sent = sent.slice(1).join(' ');
+      this.setState({sent: sent});
     } catch (e) {
       console.log(e);
     }
   }
   render() {
     this.readCards();
-    return (<div>JSON component</div>);
+    let button = null;
+    if (this.state.loaded) {
+      button = <button onClick={this.generateSentence}>Generate!</button>;
+    }
+    return (
+      <div id="results">
+        <div id="sentence">{this.state.sent}</div>
+        {button}
+      </div>
+    );
   }
 }
 

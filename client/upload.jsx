@@ -20,9 +20,9 @@ class Upload extends React.Component {
   
   render() {
     return (
-      <div>
+      <div id="drop">
         <Dropzone onDrop={this.onDrop} accept="text/*" multiple={false} disableClick={true}>
-          <div>Drop your txt file here</div>
+          <div id="dropText">Drop sherlock holmes here</div>
         </Dropzone>
       </div>
     );

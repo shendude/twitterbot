@@ -20,8 +20,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Json data={this.state.data}/>
         <Upload onUpdate={this.onUpdate}/>
+        <Json data={this.state.data}/>
       </div>
     );
   }

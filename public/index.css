@@ -1,0 +1,60 @@
+#drop {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin-left: -112px;
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+}
+
+#dropText {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  margin-top: -18px;
+  left: 50%;
+  margin-left: -86px;
+}
+
+#results {
+  text-align: center;
+}
+
+#sentence {
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 48px;
+  text-shadow: 4px 4px 4px #aaa;
+}
+
+html {
+  background: linear-gradient(to bottom right, #00aced, #c0deed);
+}
+
+button {
+  margin: 0 10px 0 0;
+  padding: 15px 45px;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 48px;
+  line-height: 1.8;
+  appearance: none;
+  color: #fff;
+  background-color: #6496c8;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #27496d;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-color: #417cb8;
+}
+
+button:active {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+}
